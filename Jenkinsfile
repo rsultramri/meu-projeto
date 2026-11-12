@@ -54,7 +54,7 @@ pipeline {
                 sh """
                     docker rm -f app-${AMBIENTE} || true
                     docker run -d --name app-${AMBIENTE} \
-                        -p ${PORTA}:3000 \
+                        --log-driver json-file -p ${PORTA}:3000 \
                         -e AMBIENTE=${AMBIENTE} \
                         ${DOCKER_IMAGE}:${DOCKER_TAG}
                 """
